@@ -80,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
                         public void run() {
-//                            barcodeInfoPrev = barcodeInfo.getText();
-                            barcodeInfo.setText(    // Update the TextView
-                                    barcodes.valueAt(0).displayValue
-                            );
-//                            barcodeValue =
-                            toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);                         }
+                            String barcodeInfoPrev = barcodeInfo.getText().toString();
+                            String barcodeInfoNew = barcodes.valueAt(0).displayValue;
+                            if (barcodeInfoPrev != barcodeInfoNew) {
+                                barcodeInfo.setText(barcodeInfoNew);
+                                toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+                            }
+                        }
                     });
                 }
             }
